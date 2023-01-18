@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, ImageBackground } from 'react-native';
 import useState from 'react-usestateref'
 import DatePicker from 'react-native-neat-date-picker'
 import { SelectList } from 'react-native-dropdown-select-list'
 
 export default function App() {
+
+
+  const image = {uri: 'https://www.fodors.com/wp-content/uploads/2022/05/Hero-UltMontreal-shutterstock_1839500569.jpg'};
 
   const [ageCategory, setAgeCategory] = useState("");
   
@@ -57,37 +60,41 @@ export default function App() {
   
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to OPTUS</Text>
-      <StatusBar style="auto" />
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
 
-      <TouchableOpacity style={styles.ButtonStyle} activeOpacity = { .5 } onPress={() => openDatePicker('arrivee')}>
-        <Text style={styles.TextStyle}> Arrivée : {JSON.stringify(dateArrivee)} </Text>
-      </TouchableOpacity>
+        <Text style={styles.title}>Welcome to OPTUS</Text>
+        <StatusBar style="auto" />
 
-      <TouchableOpacity style={styles.ButtonStyle} activeOpacity = { .5 } onPress={() => openDatePicker('depart')}>
-        <Text style={styles.TextStyle}> Départ : {JSON.stringify(dateDepart)} </Text>
-      </TouchableOpacity>
+        <View style={{width: '50%', justifyContent:'center', flex: 1}}>
 
-      <SelectList 
-        setSelected={(val) => setAgeCategory(val)} 
-        data={data} 
-        save="key"
-      />
-     
-      <DatePicker
-        isVisible={showDatePicker}
-        mode={'single'}
-        onCancel={onCancel}
-        onConfirm={(date) => onConfirm(date)}
-      />
+          <TouchableOpacity style={styles.ButtonStyle} activeOpacity = { .5 } onPress={() => openDatePicker('arrivee')}>
+            <Text style={styles.TextStyle}> Arrivée : {JSON.stringify(dateArrivee)} </Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity style={styles.ButtonStyleConfirmation} activeOpacity = { .5 } onPress={() => onSend()}>
-        <Text style={styles.TextStyle}> Confirmer </Text>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.ButtonStyle} activeOpacity = { .5 } onPress={() => openDatePicker('depart')}>
+            <Text style={styles.TextStyle}> Départ : {JSON.stringify(dateDepart)} </Text>
+          </TouchableOpacity>
 
+          <SelectList 
+            setSelected={(val) => setAgeCategory(val)} 
+            data={data} 
+            save="key"
+            boxStyles={{backgroundColor: 'white'}}
+            dropdownStyles={{backgroundColor: 'white'}}
+          />
+        
+          <DatePicker
+            isVisible={showDatePicker}
+            mode={'single'}
+            onCancel={onCancel}
+            onConfirm={(date) => onConfirm(date)}
+          />
 
-    </View>
+          <TouchableOpacity style={styles.ButtonStyleConfirmation} activeOpacity = { .5 } onPress={() => onSend()}>
+            <Text style={styles.TextStyle}> Confirmer </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
   );
 }
 
@@ -100,7 +107,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     fontWeight: 'bold',
-    marginBottom: 80
+    marginTop: 100,
+    margin: 'auto'
   },
   date: {
     marginBottom: 20
@@ -122,5 +130,11 @@ const styles = StyleSheet.create({
   TextStyle:{
       color:'#fff',
       textAlign:'center',
+  },image: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
