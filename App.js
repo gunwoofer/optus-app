@@ -83,17 +83,18 @@ export default function App() {
             dropdownStyles={{backgroundColor: 'white'}}
           />
         
-          <DatePicker
-            isVisible={showDatePicker}
-            mode={'single'}
-            onCancel={onCancel}
-            onConfirm={(date) => onConfirm(date)}
-          />
+          
 
           <TouchableOpacity style={styles.ButtonStyleConfirmation} activeOpacity = { .5 } onPress={() => onSend()}>
             <Text style={styles.TextStyle}> Confirmer </Text>
           </TouchableOpacity>
         </View>
+        <DatePicker
+            isVisible={showDatePicker}
+            mode={'single'}
+            onCancel={onCancel}
+            onConfirm={(date) => onConfirm(date)}
+          />
       </ImageBackground>
   );
 }
