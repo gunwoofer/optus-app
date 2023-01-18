@@ -5,19 +5,18 @@ import useState from 'react-usestateref'
 import DatePicker from 'react-native-neat-date-picker'
 import DropDownPicker from 'react-native-dropdown-picker';
 
-
+import { SelectList } from 'react-native-dropdown-select-list'
 
 export default function App() {
 
+  const [ageCategory, setAgeCategory] = useState("");
+  
+  const data = [,
+      {key:'none', value:'Aucune'},
+      {key:'senior', value:'65 ans et +'},
+      {key:'student', value:'Etudiant'},
+  ]
 
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('none');
-  const [items, setItems] = useState([
-    {label: 'Aucune', value: 'none'},
-    {label: 'Etudiant', value: 'etudiant'},
-    {label: '65 ans et +', value: 'senior'},
-    
-  ]);
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [mode, setMode] = useState('arrivee');
@@ -48,20 +47,20 @@ export default function App() {
   const onSend = () => {
     console.log(dateArrivee);
     console.log(dateDepart);
-    console.log(value);
+    console.log(ageCategory);
 
-    fetch('http://127.0.0.1:5000/optimize', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        dateArrivee: dateArrivee,
-        dateDepart: dateDepart,
-        categorieAge: value
-      }),
-    });
+    // fetch('http://127.0.0.1:5000/optimize', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     dateArrivee: dateArrivee,
+    //     dateDepart: dateDepart,
+    //     categorieAge: ageCategory
+    //   }),
+    // });
   }
   
 
@@ -69,27 +68,19 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to OPTUS</Text>
       <StatusBar style="auto" />
+
       <TouchableOpacity style={styles.ButtonStyle} activeOpacity = { .5 } onPress={() => openDatePicker('arrivee')}>
- 
         <Text style={styles.TextStyle}> Arrivée : {JSON.stringify(dateArrivee)} </Text>
- 
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.ButtonStyle} activeOpacity = { .5 } onPress={() => openDatePicker('depart')}>
- 
         <Text style={styles.TextStyle}> Départ : {JSON.stringify(dateDepart)} </Text>
-
       </TouchableOpacity>
 
-      <DropDownPicker
-        style={{width:200}}
-        containerStyle={{width:200}}
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
+      <SelectList 
+        setSelected={(val) => setAgeCategory(val)} 
+        data={data} 
+        save="key"
       />
      
       <DatePicker
@@ -100,9 +91,7 @@ export default function App() {
       />
 
       <TouchableOpacity style={styles.ButtonStyleConfirmation} activeOpacity = { .5 } onPress={() => onSend()}>
- 
         <Text style={styles.TextStyle}> Confirmer </Text>
-
       </TouchableOpacity>
 
 
