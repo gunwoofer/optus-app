@@ -16,8 +16,8 @@ export default function App() {
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [mode, setMode] = useState('arrivee');
-  const [dateArrivee, setDateArrivee] = useState(JSON.stringify(new Date()).split('T')[0].slice(1));
-  const [dateDepart, setDateDepart] = useState(JSON.stringify(new Date()).split('T')[0].slice(1));
+  const [dateArrivee, setDateArrivee] = useState('');
+  const [dateDepart, setDateDepart] = useState('');
 
   const openDatePicker = (mode) => {
     setMode(mode);
@@ -31,9 +31,9 @@ export default function App() {
   const onConfirm = ( date ) => {
     setShowDatePicker(false)
     if (mode == 'depart') 
-      setDateDepart(JSON.stringify(date).split('T')[0].split(':')[1].slice(1));
+      setDateDepart(date.dateString);
     if (mode == 'arrivee')
-      setDateArrivee(JSON.stringify(date).split('T')[0].split(':')[1].slice(1));
+      setDateArrivee(date.dateString);
   }
 
   const onSend = () => {
