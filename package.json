@@ -1,22 +1,35 @@
 {
   "name": "optus-app",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/roboto": "^0.2.2",
     "@expo/ngrok": "^2.4.3",
     "@expo/webpack-config": "^0.17.2",
+    "@react-native-community/datetimepicker": "^6.7.1",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-picker/picker": "^2.4.8",
     "expo": "~47.0.12",
+    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-web": "~0.18.9"
+    "react-native-dropdown-picker": "^5.4.4",
+    "react-native-linear-gradient": "^2.6.2",
+    "react-native-modal": "^13.0.1",
+    "react-native-modern-datepicker": "^1.0.0-beta.91",
+    "react-native-neat-date-picker": "^1.4.9",
+    "react-native-number-please": "^1.0.5",
+    "react-native-picker-select": "^8.0.4",
+    "react-native-text-gradient": "^0.1.7",
+    "react-native-web": "~0.18.9",
+    "react-usestateref": "^1.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
