@@ -44,7 +44,7 @@ export default function App() {
     console.log(dateDepart);
     console.log(ageCategory);
 
-    fetch('http://127.0.0.1:5000/optimize', {
+    fetch('http://192.168.2.88:5000/optimize', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -55,7 +55,8 @@ export default function App() {
         dateDepart: dateDepart,
         categorieAge: ageCategory
       }),
-    });
+    }).then(response => response.json())
+    .then(json => alert(json.test + "\n" + json.dateArrivee + "\n" + json.dateDepart + "\n" + json.categorieAge))
   }
   
 
@@ -100,19 +101,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     fontSize: 35,
     fontWeight: 'bold',
     marginTop: 100,
     margin: 'auto'
-  },
-  date: {
-    marginBottom: 20
   },
   ButtonStyle: {
     paddingTop:10,
